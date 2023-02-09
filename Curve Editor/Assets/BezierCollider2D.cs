@@ -4,14 +4,13 @@ using System.Collections.Generic;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class BezierCollider2D : MonoBehaviour
 {
-    public Vector2 firstPoint;
-    public Vector2 secondPoint;
+    public Vector2 q;
+    public Vector2 y;
 
-    public Vector2 handlerFirstPoint;
-    public Vector2 handlerSecondPoint;
+    public Vector2 u;
+    public Vector2 v;
 
-    public int pointsQuantity;
-    public GameObject testPrefab = ;
+    public int z;
 
     Vector3 CalculateBezierPoint(float pointsQuantityProportion, Vector3 p0, Vector3 handlerP0, Vector3 handlerP1, Vector3 p1)
     {
@@ -33,14 +32,12 @@ public class BezierCollider2D : MonoBehaviour
     {
         List<Vector2> points = new List<Vector2>();
 
-        points.Add(firstPoint);
-        for (int i = 1; i < pointsQuantity; i++) // for all the points inbetween the first and last
+        points.Add(q);
+        for (int i = 1; i < z; i++) // for all the points inbetween the first and last
         {
-            points.Add(CalculateBezierPoint((1f / pointsQuantity) * i, firstPoint, handlerFirstPoint, handlerSecondPoint, secondPoint));
-            Vector3 balls = points[i];
-            GameObject.Instantiate(testPrefab, balls, Quaternion.identity);
+            points.Add(CalculateBezierPoint((1f / z) * i, q, u, v, y));
         }
-        points.Add(secondPoint);
+        points.Add(y);
 
         return points.ToArray();
     }
