@@ -14,8 +14,11 @@ public class BezierCollider2D : MonoBehaviour
 
     public GameObject test;
 
+    EdgeCollider2D edgeCollider;
+
     void Start()
     {
+        edgeCollider = GetComponent<EdgeCollider2D>();
     }
     void Update()
     {
@@ -27,16 +30,20 @@ public class BezierCollider2D : MonoBehaviour
         }
         points.Add(lastPoint);
 
-        foreach (Vector2 point in points){
+        foreach (Vector2 point in points)
+        {
             GameObject.Instantiate(test, new Vector3(point.x, point.y, 0), Quaternion.identity);
         }
+
+        Vector2[] pointsArray = points.ToArray();
+        edgeCollider.points = pointsArray;
     }
 
     Vector3 CalculatePointBetween(float pointsProportion, Vector3 firstPoint, Vector3 firstHandle, Vector3 lastPoint, Vector3 lastHandle)
     {
 
-        Vector3 pointCoord = (float)Math.Pow(pointsProportion, 3) * firstPoint;
-        pointCoord += 3.0f * (float)Math.Pow(1.0f - pointsProportion, 2) * firstHandle;
+        Vector3 pointCoord = (float)Math.Pow(1.0f - pointsProportion, 3) * firstPoint;
+        pointCoord += 3.0f * (float)Math.Pow(1.0f - pointsProportion, 2) * pointsProportion * firstHandle;
         pointCoord += 3.0f * (float)Math.Pow(pointsProportion, 2) * (1.0f - pointsProportion) * lastHandle;
         pointCoord += (float)Math.Pow(pointsProportion, 3) * lastPoint;
 

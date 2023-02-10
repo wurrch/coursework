@@ -214,6 +214,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3717657043535203194, guid: 3b0401b5679bca34286921df757830fb, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717657043535203194, guid: 3b0401b5679bca34286921df757830fb, type: 3}
+      propertyPath: m_UseAdjacentStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717657043535203194, guid: 3b0401b5679bca34286921df757830fb, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717657043535203194, guid: 3b0401b5679bca34286921df757830fb, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3717657043535203195, guid: 3b0401b5679bca34286921df757830fb, type: 3}
       propertyPath: m_RootOrder
       value: 1

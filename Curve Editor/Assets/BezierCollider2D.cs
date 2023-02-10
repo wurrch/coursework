@@ -12,18 +12,18 @@ public class BezierCollider2D : MonoBehaviour
 
     public int z;
 
-    Vector3 CalculateBezierPoint(float pointsQuantityProportion, Vector3 p0, Vector3 handlerP0, Vector3 handlerP1, Vector3 p1)
+    Vector3 CalculateBezierPoint(float u, Vector3 p0, Vector3 handlerP0, Vector3 handlerP1, Vector3 p1)
     {
-        float inversePointsQuantityProportion = 1.0f - pointsQuantityProportion;
-        float pointsQuantityProportionSquared = pointsQuantityProportion * pointsQuantityProportion;
-        float inversePointsQuantityProportionSquared = inversePointsQuantityProportion * inversePointsQuantityProportion;
-        float uuu = inversePointsQuantityProportionSquared * inversePointsQuantityProportion;
-        float ttt = pointsQuantityProportionSquared * pointsQuantityProportion;
+        float t = 1.0f - u;
+        float uu = u * u;
+        float tt = t * t;
+        float ttt = tt * t;
+        float uuu = uu * u;
 
-        Vector3 p = uuu * p0; //first term
-        p += 3f * inversePointsQuantityProportionSquared * pointsQuantityProportion * handlerP0; //second term
-        p += 3f * inversePointsQuantityProportion * pointsQuantityProportionSquared * handlerP1; //third term
-        p += ttt * p1; //fourth term
+        Vector3 p = ttt * p0; //first term
+        p += 3f * tt * u * handlerP0; //second term
+        p += 3f * t * uu * handlerP1; //third term
+        p += uuu * p1; //fourth term
 
         return p;
     }
