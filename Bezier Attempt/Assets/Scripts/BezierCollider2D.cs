@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EdgeCollider2D))]
+[RequireComponent(typeof(LineRenderer))]
 public class BezierCollider2D : MonoBehaviour
 {
     public int pointsAmount;
@@ -15,10 +16,11 @@ public class BezierCollider2D : MonoBehaviour
     public GameObject test;
 
     EdgeCollider2D edgeCollider;
-
+    LineRenderer lineRenderer;
     void Start()
     {
         edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
     void Update()
     {
@@ -37,6 +39,11 @@ public class BezierCollider2D : MonoBehaviour
 
         Vector2[] pointsArray = points.ToArray();
         edgeCollider.points = pointsArray;
+        lineRenderer.positionCount = pointsAmount + 1;
+        for (int i = 0; i <= pointsAmount; i++)
+        {
+            lineRenderer.SetPosition(i, new Vector3(pointsArray[i].x, pointsArray[i].y));
+        }
     }
 
     Vector3 CalculatePointBetween(float pointsProportion, Vector3 firstPoint, Vector3 firstHandle, Vector3 lastPoint, Vector3 lastHandle)
