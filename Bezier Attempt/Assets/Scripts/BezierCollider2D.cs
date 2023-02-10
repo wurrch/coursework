@@ -7,48 +7,65 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class BezierCollider2D : MonoBehaviour
 {
-    public int pointsAmount;
-    public Vector2 firstPoint;
-    public Vector2 firstHandle;
-    public Vector2 lastPoint;
-    public Vector2 lastHandle;
+    public GameObject ballPrefab;
+    GameObject firstBall;
+    GameObject lastBall;
 
-    public GameObject test;
+    public int pointsAmount = 0;
+    public Vector2 firstPoint = Vector2.zero;
+    public Vector2 firstHandle = Vector2.zero;
+    public Vector2 lastPoint = Vector2.zero;
+    public Vector2 lastHandle = Vector2.zero;
+
+    int prevPointsAmount = 0;
+    Vector2 prevFirstPoint = Vector2.zero;
+    Vector2 prevFirstHandle = Vector2.zero;
+    Vector2 prevLastPoint = Vector2.zero;
+    Vector2 prevLastHandle = Vector2.zero;
 
     EdgeCollider2D edgeCollider;
     LineRenderer lineRenderer;
-    void Start()
+    public void Start()
     {
         edgeCollider = GetComponent<EdgeCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
+
+        firstBall = GameObject.Instantiate(ballPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
+        lastBall = GameObject.Instantiate(ballPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
     }
     void Update()
     {
-        List<Vector2> points = new List<Vector2>();
-        points.Add(firstPoint);
-        for (int i = 1; i < pointsAmount; i++)
+        if (pointsAmount > 0 && (prevPointsAmount != pointsAmount || prevFirstPoint != firstPoint || prevFirstHandle != firstHandle || prevLastPoint != lastPoint || prevLastHandle != lastHandle)) // If any of the values are not the same as the last values:
         {
-            points.Add(CalculatePointBetween((1.0f / pointsAmount) * i, firstPoint, firstHandle, lastPoint, lastHandle));
-        }
-        points.Add(lastPoint);
+            prevPointsAmount = pointsAmount;
+            prevPointsAmount = pointsAmount;
+            prevFirstPoint = firstPoint;
+            prevFirstHandle = firstHandle;
+            prevLastPoint = lastPoint;
 
-        foreach (Vector2 point in points)
-        {
-            GameObject.Instantiate(test, new Vector3(point.x, point.y, 0), Quaternion.identity);
-        }
+            print("moved");
 
-        Vector2[] pointsArray = points.ToArray();
-        edgeCollider.points = pointsArray;
-        lineRenderer.positionCount = pointsAmount + 1;
-        for (int i = 0; i <= pointsAmount; i++)
-        {
-            lineRenderer.SetPosition(i, new Vector3(pointsArray[i].x, pointsArray[i].y));
+            List<Vector2> points = new List<Vector2>();
+            points.Add(firstPoint);
+            for (int i = 1; i < pointsAmount; i++)
+            {
+                points.Add(CalculatePointBetween((1.0f / pointsAmount) * i, firstPoint, firstHandle, lastPoint, lastHandle));
+            }
+            points.Add(lastPoint);
+
+            Vector2[] pointsArray = points.ToArray();
+            edgeCollider.points = pointsArray;
+
+            lineRenderer.positionCount = pointsAmount + 1;
+            for (int i = 0; i <= pointsAmount; i++)
+            {
+                lineRenderer.SetPosition(i, new Vector3(pointsArray[i].x, pointsArray[i].y));
+            }
         }
     }
 
     Vector3 CalculatePointBetween(float pointsProportion, Vector3 firstPoint, Vector3 firstHandle, Vector3 lastPoint, Vector3 lastHandle)
     {
-
         Vector3 pointCoord = (float)Math.Pow(1.0f - pointsProportion, 3) * firstPoint;
         pointCoord += 3.0f * (float)Math.Pow(1.0f - pointsProportion, 2) * pointsProportion * firstHandle;
         pointCoord += 3.0f * (float)Math.Pow(pointsProportion, 2) * (1.0f - pointsProportion) * lastHandle;
