@@ -7,9 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class BezierCollider2D : MonoBehaviour
 {
-    public GameObject ballPrefab;
-    GameObject firstBall;
-    GameObject lastBall;
+    public GameObject controlPrefab;
+    public GameObject handlePrefab;
+    GameObject firstControlBall;
+    GameObject firstHandleBall;
+    GameObject lastControlBall;
+    GameObject lastHandleBall;
 
     public int pointsAmount = 0;
     public Vector2 firstPoint = Vector2.zero;
@@ -30,20 +33,22 @@ public class BezierCollider2D : MonoBehaviour
         edgeCollider = GetComponent<EdgeCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
 
-        firstBall = GameObject.Instantiate(ballPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
-        lastBall = GameObject.Instantiate(ballPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
+        firstHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(firstHandle.x, firstHandle.y, 0), Quaternion.identity);
+        lastControlBall = GameObject.Instantiate(controlPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
+        lastHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(lastHandle.x, lastHandle.y, 0), Quaternion.identity);
     }
     void Update()
     {
         if (pointsAmount > 0 && (prevPointsAmount != pointsAmount || prevFirstPoint != firstPoint || prevFirstHandle != firstHandle || prevLastPoint != lastPoint || prevLastHandle != lastHandle)) // If any of the values are not the same as the last values:
         {
-            prevPointsAmount = pointsAmount;
+            firstPoint = firstControlBall.transform.position;
+
             prevPointsAmount = pointsAmount;
             prevFirstPoint = firstPoint;
             prevFirstHandle = firstHandle;
             prevLastPoint = lastPoint;
-
-            print("moved");
+            prevLastHandle = lastHandle;
 
             List<Vector2> points = new List<Vector2>();
             points.Add(firstPoint);

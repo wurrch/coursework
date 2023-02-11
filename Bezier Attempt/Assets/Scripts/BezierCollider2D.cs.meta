@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - test: {fileID: 1501885803288884934, guid: 99a4e86ddeaadab4aa0696dc79176882, type: 3}
+  - controlPrefab: {fileID: 2941537337499186949, guid: 44f652b74da1c484ca473768f3ce22c2, type: 3}
+  - handlePrefab: {fileID: 3140345198938778177, guid: 3c575e6d11ec85c4f94c46de2d48bea3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

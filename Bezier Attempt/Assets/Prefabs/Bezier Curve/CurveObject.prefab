@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3717657043535203195}
-  - component: {fileID: 3717657043535203196}
+  - component: {fileID: 4667641394584587170}
   - component: {fileID: 3717657043535203194}
   - component: {fileID: 5338368681813378611}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3717657043535203196
+--- !u!114 &4667641394584587170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc660051c135a1418fc8665cc9b1835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 2941537337499186949, guid: 44f652b74da1c484ca473768f3ce22c2, type: 3}
-  pointsAmount: 12
+  controlPrefab: {fileID: 2941537337499186949, guid: 44f652b74da1c484ca473768f3ce22c2, type: 3}
+  handlePrefab: {fileID: 3140345198938778177, guid: 3c575e6d11ec85c4f94c46de2d48bea3, type: 3}
+  pointsAmount: 10
   firstPoint: {x: 0, y: 0}
-  firstHandle: {x: 0, y: 0}
-  lastPoint: {x: 0, y: 0}
-  lastHandle: {x: 0, y: 0}
-  test: {fileID: 0}
+  firstHandle: {x: -2, y: -2}
+  lastPoint: {x: 4, y: 4}
+  lastHandle: {x: 6, y: 6}
 --- !u!68 &3717657043535203194
 EdgeCollider2D:
   m_ObjectHideFlags: 0
