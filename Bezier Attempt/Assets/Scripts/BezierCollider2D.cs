@@ -28,6 +28,7 @@ public class BezierCollider2D : MonoBehaviour
 
     EdgeCollider2D edgeCollider;
     LineRenderer lineRenderer;
+
     public void Start()
     {
         edgeCollider = GetComponent<EdgeCollider2D>();
@@ -38,9 +39,20 @@ public class BezierCollider2D : MonoBehaviour
         lastControlBall = GameObject.Instantiate(controlPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
         lastHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(lastHandle.x, lastHandle.y, 0), Quaternion.identity);
     }
+
     void Update()
     {
-        if (pointsAmount > 0 && (prevPointsAmount != pointsAmount || prevFirstPoint != firstPoint || prevFirstHandle != firstHandle || prevLastPoint != lastPoint || prevLastHandle != lastHandle)) // If any of the values are not the same as the last values:
+        firstPoint = new Vector2(firstControlBall.transform.position.x, firstControlBall.transform.position.y);
+        firstHandle = new Vector2(firstHandleBall.transform.position.x, firstHandleBall.transform.position.y);
+        lastPoint = new Vector2(lastControlBall.transform.position.x, lastControlBall.transform.position.y);
+        lastHandle = new Vector2(lastHandleBall.transform.position.x, lastHandleBall.transform.position.y);
+
+        if (pointsAmount > 0 &&
+        (prevPointsAmount != pointsAmount ||
+        prevFirstPoint != firstPoint ||
+        prevFirstHandle != firstHandle ||
+        prevLastPoint != lastPoint ||
+        prevLastHandle != lastHandle)) // If any of the values are not the same as the last values:
         {
             firstPoint = firstControlBall.transform.position;
 
