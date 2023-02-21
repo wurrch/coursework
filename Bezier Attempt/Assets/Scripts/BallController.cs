@@ -13,6 +13,7 @@ public class BallController : MonoBehaviour
         unselectColour = spriteRenderer.color;
         selectColour = spriteRenderer.color;
         selectColour.a = 0.5f;
+        Application.targetFrameRate = 1000;
     }
 
     void Update()

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlPrefab: {fileID: 2941537337499186949, guid: 44f652b74da1c484ca473768f3ce22c2, type: 3}
   handlePrefab: {fileID: 3140345198938778177, guid: 3c575e6d11ec85c4f94c46de2d48bea3, type: 3}
-  pointsAmount: 10
+  pointsAmount: 30
   firstPoint: {x: 0, y: 0}
   firstHandle: {x: -2, y: -2}
   lastPoint: {x: 4, y: 4}
@@ -127,7 +127,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.14375305
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
