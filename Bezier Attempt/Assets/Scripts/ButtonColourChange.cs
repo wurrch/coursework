@@ -2,32 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public class ButtonColourChange : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     Color unselectColour;
     Color selectColour;
-
-    void Start(){
+    // Start is called before the first frame update
+    void Start()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         unselectColour = spriteRenderer.color;
         selectColour = spriteRenderer.color;
         selectColour.a = 0.5f;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (IsTapOnObject()){
                 spriteRenderer.color = selectColour;
-            }
-        }
-        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved){
-            if (IsTapOnObject()){
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                touchPos.z = 0f;
-                transform.position = touchPos;
             }
         }
         else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
