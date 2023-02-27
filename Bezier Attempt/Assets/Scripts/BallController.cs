@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
-    Color unselectColour;
-    Color selectColour;
-
-    void Start(){
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        unselectColour = spriteRenderer.color;
-        selectColour = spriteRenderer.color;
-        selectColour.a = 0.5f;
-    }
+    public bool isBallActive = false;
 
     void Update()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (IsTapOnObject()){
-                spriteRenderer.color = selectColour;
-            }
-        }
-        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved){
-            if (IsTapOnObject()){
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                touchPos.z = 0f;
-                transform.position = touchPos;
+                isBallActive = true;
             }
         }
         else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
-            spriteRenderer.color = unselectColour;
+            isBallActive = false;
+        }
+
+        if (isBallActive){
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            touchPos.z = 0f;
+            transform.position = touchPos;
         }
     }
 
