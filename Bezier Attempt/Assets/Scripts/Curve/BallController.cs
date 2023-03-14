@@ -25,7 +25,7 @@ public class BallController : MonoBehaviour
         }
     }
 
-    bool IsTapOnObject(){
+    public bool IsTapOnObject(){
         Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
         RaycastHit2D hit = Physics2D.Raycast(touchPos, Vector2.zero);
 

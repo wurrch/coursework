@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class BezierCollider2D : MonoBehaviour
 {
+    public bool selectedMode = false;
+
     public GameObject controlPrefab;
     public GameObject handlePrefab;
     GameObject firstControlBall;
@@ -42,6 +44,28 @@ public class BezierCollider2D : MonoBehaviour
 
     void Update()
     {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            if (IsTapOnObject() ||
+            firstControlBall.GetComponent<BallController>().IsTapOnObject() ||
+            firstHandleBall.GetComponent<BallController>().IsTapOnObject() ||
+            lastControlBall.GetComponent<BallController>().IsTapOnObject() ||
+            lastHandleBall.GetComponent<BallController>().IsTapOnObject()){
+                selectedMode = true;
+                firstControlBall.SetActive(true);
+                firstHandleBall.SetActive(true);
+                lastControlBall.SetActive(true);
+                lastHandleBall.SetActive(true);
+            }
+            else{
+                selectedMode = false;
+                firstControlBall.SetActive(false);
+                firstHandleBall.SetActive(false);
+                lastControlBall.SetActive(false);
+                lastHandleBall.SetActive(false);
+            }
+        }
+
         firstPoint = new Vector2(firstControlBall.transform.position.x, firstControlBall.transform.position.y);
         firstHandle = new Vector2(firstHandleBall.transform.position.x, firstHandleBall.transform.position.y);
         lastPoint = new Vector2(lastControlBall.transform.position.x, lastControlBall.transform.position.y);
@@ -89,5 +113,15 @@ public class BezierCollider2D : MonoBehaviour
         pointCoord += (float)Math.Pow(pointsProportion, 3) * lastPoint;
 
         return pointCoord;
+    }
+
+    bool IsTapOnObject(){
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject == gameObject){
+            return true;
+        }
+        return false;
     }
 }
