@@ -11,6 +11,9 @@ public class ButtonSceneChange : MonoBehaviour
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
             if (IsTapOnObject()){
+                GameObject globalObject = GameObject.Find("GlobalObject");
+                GlobalScript globalScript = globalObject.GetComponent<GlobalScript>();
+                globalScript.hello = nextScene;
                 SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             }
         }
