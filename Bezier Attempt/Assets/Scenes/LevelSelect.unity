@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 21618786}
   - component: {fileID: 21618785}
   - component: {fileID: 21618788}
+  - component: {fileID: 21618789}
   m_Layer: 0
   m_Name: BackArrow
   m_TagString: Untagged
@@ -248,6 +249,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.2, y: 10.8}
   m_EdgeRadius: 0
+--- !u!114 &21618789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21618784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f051771180f2f243295958e7e467209e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &265652197
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
+    public GameObject characterBallPrefab;
     // Update is called once per frame
-    void Update()
-    {
-        
+    void SpawnCharacterBall(){
+        characterBall = GameObject.Instantiate(characterBallPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
     }
 }
