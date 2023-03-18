@@ -14,6 +14,8 @@ public class GlobalScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        Application.targetFrameRate = 60;
+
         DontDestroyOnLoad(this.gameObject);
     }
 }
