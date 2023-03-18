@@ -3,7 +3,9 @@ guid: dadadb72187dc2c9f84611ba699fa58e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - characterBallPrefab: {fileID: 6340996912375645102, guid: 18e0748c31a5ae13586c96029654ea4d, type: 3}
+  - characterBall: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ButtonSceneChange : MonoBehaviour
+public class ToolSpawnButton : MonoBehaviour
 {
-    public string nextScene;
-    public bool isBallActive = false;
+    public GameObject toolPrefab;
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
             if (IsTapOnObject()){
-                GameObject.Find("GlobalObject").GetComponent<GlobalScript>().currentScene = nextScene;
-                SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+                print("made object");
+                GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();
             }
         }
     }

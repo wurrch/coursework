@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GlobalScript : MonoBehaviour
 {
-    public string hello = "first";
+    public string currentScene = "MainMenu";
+
     void Awake(){
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GlobalObject");
 
