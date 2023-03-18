@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - GlobalObject
+  - CharacterSpawnpoint
+  - CurveObject
+  - Finishpoint
+  - CharacterBall
   layers:
   - Default
   - TransparentFX

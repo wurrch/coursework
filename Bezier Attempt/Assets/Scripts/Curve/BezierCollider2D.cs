@@ -44,20 +44,23 @@ public class BezierCollider2D : MonoBehaviour
 
     void Update()
     {
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (IsTapOnObject() ||
             firstControlBall.GetComponent<BallController>().IsTapOnObject() ||
             firstHandleBall.GetComponent<BallController>().IsTapOnObject() ||
             lastControlBall.GetComponent<BallController>().IsTapOnObject() ||
-            lastHandleBall.GetComponent<BallController>().IsTapOnObject()){
-                selectedMode = true;
-                firstControlBall.SetActive(true);
-                firstHandleBall.SetActive(true);
-                lastControlBall.SetActive(true);
-                lastHandleBall.SetActive(true);
+            lastHandleBall.GetComponent<BallController>().IsTapOnObject()) {
+                if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false) {
+                    selectedMode = true;
+                    firstControlBall.SetActive(true);
+                    firstHandleBall.SetActive(true);
+                    lastControlBall.SetActive(true);
+                    lastHandleBall.SetActive(true);
+                }
             }
-            else{
+            else {
                 selectedMode = false;
                 firstControlBall.SetActive(false);
                 firstHandleBall.SetActive(false);
@@ -65,6 +68,7 @@ public class BezierCollider2D : MonoBehaviour
                 lastHandleBall.SetActive(false);
             }
         }
+
 
         firstPoint = new Vector2(firstControlBall.transform.position.x, firstControlBall.transform.position.y);
         firstHandle = new Vector2(firstHandleBall.transform.position.x, firstHandleBall.transform.position.y);

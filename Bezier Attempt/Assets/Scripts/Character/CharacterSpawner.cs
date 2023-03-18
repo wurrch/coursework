@@ -5,13 +5,17 @@ using UnityEngine;
 public class CharacterSpawner : MonoBehaviour
 {
     public GameObject characterBallPrefab;
-    public GameObject characterBall;
     bool isBallActive = false;
 
     public void SpawnCharacterBall(){
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        characterBall = GameObject.Instantiate(characterBallPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+        GameObject.Instantiate(characterBallPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
     }
+
+    public void ReactivateEditMode(){
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+    }
+
 
     void Update(){
         if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false){

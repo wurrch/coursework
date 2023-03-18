@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 120752920}
   - component: {fileID: 120752921}
   - component: {fileID: 120752922}
+  - component: {fileID: 120752923}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -318,6 +319,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &120752923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120752919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 1b4c2c66d615e5f6395df5a784c19ecf, type: 2}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
+  m_PreviousLayer: 0
+  m_PreviousPriority: 0
+  m_TempColliders: []
+  m_InternalProfile: {fileID: 0}
 --- !u!1 &400166778
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +610,7 @@ GameObject:
   - component: {fileID: 1027672044}
   - component: {fileID: 1027672046}
   - component: {fileID: 1027672045}
+  - component: {fileID: 1027672047}
   m_Layer: 0
   m_Name: FinishButton
   m_TagString: Untagged
@@ -603,7 +626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027672043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.8, z: 0}
+  m_LocalPosition: {x: 0, y: -3.8, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -688,6 +711,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1027672047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027672043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c73ef47fb747376acda8c13281290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolPrefab: {fileID: 0}
 --- !u!1 &1183798580
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +735,7 @@ GameObject:
   - component: {fileID: 1183798581}
   - component: {fileID: 1183798583}
   - component: {fileID: 1183798582}
+  - component: {fileID: 1183798584}
   m_Layer: 0
   m_Name: CurveButton
   m_TagString: Untagged
@@ -714,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183798580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.6, z: 0}
+  m_LocalPosition: {x: 0, y: -4.6, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -799,6 +836,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1183798584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183798580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c73ef47fb747376acda8c13281290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolPrefab: {fileID: 3717657043535203197, guid: 3b0401b5679bca34286921df757830fb, type: 3}
 --- !u!1 &1310718289
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +860,7 @@ GameObject:
   - component: {fileID: 1310718290}
   - component: {fileID: 1310718292}
   - component: {fileID: 1310718291}
+  - component: {fileID: 1310718293}
   m_Layer: 0
   m_Name: SpawnpointButton
   m_TagString: Untagged
@@ -825,7 +876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310718289}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -910,6 +961,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1310718293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310718289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c73ef47fb747376acda8c13281290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolPrefab: {fileID: 4227717112166106977, guid: 4daacdcbabd9e0ea5a430c554cd064f1, type: 3}
 --- !u!1 &1468502811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,3 +1240,4 @@ MonoBehaviour:
   sandboxCurrentlyPlaying: 0
   startSprite: {fileID: 21300000, guid: dc051d9a2fc11bebaa10e6820ea3a657, type: 3}
   stopSprite: {fileID: 21300000, guid: 8bb5e16550b8e7061b3b34833e33adc1, type: 3}
+  toolboxButton: {fileID: 400166778}

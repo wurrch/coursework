@@ -7,6 +7,7 @@ public class SandboxPlay : MonoBehaviour
     public bool sandboxCurrentlyPlaying = false;
     public Sprite startSprite;
     public Sprite stopSprite;
+    public GameObject toolboxButton;
 
     void Update(){
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
@@ -15,7 +16,7 @@ public class SandboxPlay : MonoBehaviour
                     SandboxBeginPlay();
                 }
                 else if(sandboxCurrentlyPlaying == true){
-
+                    SandboxStopPlay();
                 }
             }
         }
@@ -26,8 +27,8 @@ public class SandboxPlay : MonoBehaviour
         try{
             gameObject.GetComponent<SpriteRenderer>().sprite = stopSprite;
             GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();
-            GameObject.Find("ToolboxButton").SetActive(false);
-            GameObject.Find("CharacterSpawner").GetComponent<CharacterSpawner>().SpawnCharacterBall();
+            toolboxButton.SetActive(false);
+            GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().SpawnCharacterBall();
         }
         catch{
             print("Character spawner with a script cannot be found");
@@ -39,10 +40,15 @@ public class SandboxPlay : MonoBehaviour
     void SandboxStopPlay(){
         try{
             gameObject.GetComponent<SpriteRenderer>().sprite = startSprite;
+            Destroy(GameObject.FindGameObjectWithTag("CharacterBall"));
+            toolboxButton.SetActive(true);
+            GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().ReactivateEditMode();
         }
         catch{
-
+            print("Couldn't stop the game");
         }
+
+        sandboxCurrentlyPlaying = false;
     }
 
     bool IsTapOnObject(){
