@@ -17,10 +17,10 @@ public class CharacterControls : MonoBehaviour
     {
         if(isColliding){
             if(Input.GetKey(KeyCode.RightArrow)){
-                rigidbody.AddForce(new Vector2(5f, 0), ForceMode2D.Force);
+                rigidbody.AddForce(new Vector2(8f, 0), ForceMode2D.Force);
             }
             else if(Input.GetKey(KeyCode.LeftArrow)){
-                rigidbody.AddForce(new Vector2(-5f, 0), ForceMode2D.Force);
+                rigidbody.AddForce(new Vector2(-8f, 0), ForceMode2D.Force);
             }
 
             if (Input.touchCount > 0){
@@ -38,9 +38,17 @@ public class CharacterControls : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision){
         isColliding = true;
+
+        if(collision.collider.tag == "Finishpoint"){
+            GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision){
         isColliding = false;
+    }
+
+    void OnBecameInvisible(){
+        GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
     }
 }

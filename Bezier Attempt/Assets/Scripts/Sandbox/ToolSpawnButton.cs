@@ -12,7 +12,10 @@ public class ToolSpawnButton : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
             if (IsTapOnObject()){
                 if(gameObject.name == "SpawnpointButton"){
-                        Destroy(GameObject.FindGameObjectWithTag("CharacterSpawnpoint"));
+                    Destroy(GameObject.FindGameObjectWithTag("CharacterSpawnpoint"));
+                }
+                else if (gameObject.name == "Finishpoint"){
+                    Destroy(GameObject.FindGameObjectWithTag("Finishpoint"));
                 }
                 GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();

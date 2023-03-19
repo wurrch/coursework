@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSpawner : MonoBehaviour
+public class Finishpoint : MonoBehaviour
 {
-    public GameObject characterBallPrefab;
-    bool isBallActive = false;
+    bool isButtonActive = false;
 
-    public void SpawnCharacterBall(){
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        GameObject.Instantiate(characterBallPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+    public void DisableEditMode(){
+        gameObject.GetComponent<ButtonColourChange>().enabled = false;
     }
 
     public void EnableEditMode(){
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        gameObject.GetComponent<ButtonColourChange>().enabled = true;
     }
 
 
@@ -22,14 +20,14 @@ public class CharacterSpawner : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 if (IsTapOnObject()){
-                    isBallActive = true;
+                    isButtonActive = true;
                 }
             }
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
-                isBallActive = false;
+                isButtonActive = false;
             }
 
-            if (isBallActive){
+            if (isButtonActive){
                 Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                 touchPos.z = 0f;
                 transform.position = touchPos;

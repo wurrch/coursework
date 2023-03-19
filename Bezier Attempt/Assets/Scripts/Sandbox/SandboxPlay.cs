@@ -29,6 +29,7 @@ public class SandboxPlay : MonoBehaviour
             GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();
             toolboxButton.SetActive(false);
             GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().SpawnCharacterBall();
+            GameObject.FindGameObjectWithTag("Finishpoint").GetComponent<Finishpoint>().DisableEditMode();
         }
         catch{
             print("Character spawner with a script cannot be found");
@@ -37,12 +38,13 @@ public class SandboxPlay : MonoBehaviour
         sandboxCurrentlyPlaying = true;
     }
 
-    void SandboxStopPlay(){
+    public void SandboxStopPlay(){
         try{
             gameObject.GetComponent<SpriteRenderer>().sprite = startSprite;
             Destroy(GameObject.FindGameObjectWithTag("CharacterBall"));
             toolboxButton.SetActive(true);
-            GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().ReactivateEditMode();
+            GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().EnableEditMode();
+            GameObject.FindGameObjectWithTag("Finishpoint").GetComponent<Finishpoint>().EnableEditMode();
         }
         catch{
             print("Couldn't stop the game");
