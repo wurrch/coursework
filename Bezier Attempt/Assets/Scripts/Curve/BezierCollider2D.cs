@@ -44,7 +44,6 @@ public class BezierCollider2D : MonoBehaviour
 
     void Update()
     {
-
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (IsTapOnObject() ||

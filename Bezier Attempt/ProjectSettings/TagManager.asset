@@ -9,6 +9,8 @@ TagManager:
   - CurveObject
   - Finishpoint
   - CharacterBall
+  - Booster
+  - PublishPrompt
   layers:
   - Default
   - TransparentFX

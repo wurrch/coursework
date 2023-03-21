@@ -5,6 +5,7 @@ using UnityEngine;
 public class GlobalScript : MonoBehaviour
 {
     public string currentScene = "MainMenu";
+    public bool isLoadedLevel = false;
 
     void Awake(){
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GlobalObject");

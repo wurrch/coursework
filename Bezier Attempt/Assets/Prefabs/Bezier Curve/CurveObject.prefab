@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5338368681813378611}
   m_Layer: 0
   m_Name: CurveObject
-  m_TagString: Untagged
+  m_TagString: CurveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
