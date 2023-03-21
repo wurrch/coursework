@@ -29,6 +29,7 @@ public class LevelData{
 public class PublishLevel : MonoBehaviour {
     private LevelData data = new LevelData();
     private TouchScreenKeyboard fileNameKeyboard;
+    private string userInput = "";
 
     void SaveFile(){
         PopulateData(data);
@@ -74,8 +75,10 @@ public class PublishLevel : MonoBehaviour {
     void Update() {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
             if (IsTapOnObject()) {
-                while(fileNameKeyboard.text == ""){
-                    fileNameKeyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false, "File Name", 0);
+                fileNameKeyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false, false, false, false, "File Name", 0);
+
+                if (fileNameKeyboard.status == TouchScreenKeyboard.Status.Done){
+                    userInput = fileNameKeyboard.text;
                 }
 
                 SaveFile();
