@@ -75,13 +75,13 @@ public class PublishLevel : MonoBehaviour {
     void Update() {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
             if (IsTapOnObject()) {
-                fileNameKeyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false, false, false, false, "File Name", 0);
+                TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false, "File Name", 0);
+                TouchScreenKeyboard.Open("hello");
+//                if (fileNameKeyboard.status == TouchScreenKeyboard.Status.Done){
+//                    userInput = fileNameKeyboard.text;
+//                }
 
-                if (fileNameKeyboard.status == TouchScreenKeyboard.Status.Done){
-                    userInput = fileNameKeyboard.text;
-                }
-
-                SaveFile();
+                //SaveFile();
 
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             }
