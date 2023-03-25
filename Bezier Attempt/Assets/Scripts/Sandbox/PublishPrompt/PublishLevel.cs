@@ -50,8 +50,6 @@ public class PublishLevel : MonoBehaviour {
     }
 
     void UpdateInputText(){
-        print(inputField.text);
-
         if (CheckForValidName()){
             invalidNameText.SetActive(false);
         }
@@ -67,7 +65,6 @@ public class PublishLevel : MonoBehaviour {
             if (file == (Application.persistentDataPath + "/SavedLevels/" + inputField.text + ".json")){
                 return false;
             }
-            print(file);
         }
 
         return true;
