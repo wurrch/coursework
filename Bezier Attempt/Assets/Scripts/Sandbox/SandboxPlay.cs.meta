@@ -4,8 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - startSprite: {fileID: 21300000, guid: dc051d9a2fc11bebaa10e6820ea3a657, type: 3}
-  - stopSprite: {fileID: 21300000, guid: 8bb5e16550b8e7061b3b34833e33adc1, type: 3}
+  - startSprite: {fileID: 21300000, guid: ef0dc90eae5ccc68382c97685082fcd1, type: 3}
+  - stopSprite: {fileID: 21300000, guid: 2acf7313ec4d0e50285c257ced429ac5, type: 3}
+  - toolboxButton: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
