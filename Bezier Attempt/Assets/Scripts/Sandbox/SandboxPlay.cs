@@ -30,7 +30,6 @@ public class SandboxPlay : MonoBehaviour
             toolboxButton.SetActive(false);
             GameObject.FindGameObjectWithTag("CharacterSpawnpoint").GetComponent<CharacterSpawner>().SpawnCharacterBall();
             GameObject.FindGameObjectWithTag("Finishpoint").GetComponent<Finishpoint>().DisableEditMode();
-            GameObject.FindGameObjectWithTag("Finishpoint").GetComponent<Finishpoint>().DisableEditMode();
         }
         catch{
             print("Character spawner with a script cannot be found");
