@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,8 +28,50 @@ public class LevelData{
 
 public class PublishLevel : MonoBehaviour {
     private LevelData data = new LevelData();
-    private TouchScreenKeyboard fileNameKeyboard;
-    private string userInput = "";
+    public TMP_InputField inputField;
+    public GameObject invalidNameText;
+
+    void Start() {
+        inputField.onValueChanged.AddListener(delegate {UpdateInputText(); });
+    }
+
+    void Update() {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+            if (IsTapOnObject()) {
+                if (CheckForValidName()){
+                    SaveFile();
+                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                }
+                else{
+                    invalidNameText.SetActive(true);
+                }
+            }
+        }
+    }
+
+    void UpdateInputText(){
+        print(inputField.text);
+
+        if (CheckForValidName()){
+            invalidNameText.SetActive(false);
+        }
+        else{
+            invalidNameText.SetActive(true);
+        }
+    }
+
+    bool CheckForValidName(){
+        string[] currentFiles = Directory.GetFiles(Application.persistentDataPath + "/SavedLevels");
+
+        foreach (string file in currentFiles){
+            if (file == (Application.persistentDataPath + "/SavedLevels/" + inputField.text + ".json")){
+                return false;
+            }
+            print(file);
+        }
+
+        return true;
+    }
 
     void SaveFile(){
         PopulateData(data);
@@ -38,8 +80,7 @@ public class PublishLevel : MonoBehaviour {
         print(jsonString);
 
         Directory.CreateDirectory(Application.persistentDataPath + "/SavedLevels");
-        File.WriteAllText(Application.persistentDataPath + "/SavedLevels/" + fileNameKeyboard.text, jsonString);
-        print("Yes");
+        File.WriteAllText(Application.persistentDataPath + "/SavedLevels/" + inputField.text + ".json", jsonString);
     }
 
     void PopulateData(LevelData data){
@@ -69,22 +110,6 @@ public class PublishLevel : MonoBehaviour {
             boosterPointStruct.controlPoint = booster.GetComponent<Booster>().firstPoint;
 
             data.boosterList.Add(boosterPointStruct);
-        }
-    }
-
-    void Update() {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
-            if (IsTapOnObject()) {
-                TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false, "File Name", 0);
-                TouchScreenKeyboard.Open("hello");
-//                if (fileNameKeyboard.status == TouchScreenKeyboard.Status.Done){
-//                    userInput = fileNameKeyboard.text;
-//                }
-
-                //SaveFile();
-
-                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            }
         }
     }
 
