@@ -76,7 +76,6 @@ public class PublishLevel : MonoBehaviour {
         string jsonString = JsonUtility.ToJson(data);
         print(jsonString);
 
-        Directory.CreateDirectory(Application.persistentDataPath + "/SavedLevels");
         File.WriteAllText(Application.persistentDataPath + "/SavedLevels/" + inputField.text + ".json", jsonString);
     }
 

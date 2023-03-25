@@ -9,6 +9,7 @@ public class ActivatePlayMode : MonoBehaviour
     public GameObject enabledFrame;
 
     void Start() {
+        Directory.CreateDirectory(Application.persistentDataPath + "/SavedLevels");
         string[] files = Directory.GetFiles(Application.persistentDataPath + "/SavedLevels");
 
         if (files.Length > 0) {
