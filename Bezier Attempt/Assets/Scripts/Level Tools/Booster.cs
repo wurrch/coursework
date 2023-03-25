@@ -34,7 +34,7 @@ public class Booster : MonoBehaviour
             prevBoosterPoint = boosterPoint;
 
             Vector3 vectorDiff = firstControlBall.transform.position - gameObject.transform.position;
-            gameObject.transform.right = vectorDiff;
+            gameObject.transform.up = vectorDiff;
             forceVector = vectorDiff;
         }
 
