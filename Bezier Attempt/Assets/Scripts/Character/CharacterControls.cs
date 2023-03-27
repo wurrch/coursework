@@ -45,7 +45,12 @@ public class CharacterControls : MonoBehaviour
             rigidbody.AddForce(collider.GetComponent<Booster>().forceVector * 20, ForceMode2D.Force);
         }
         else if (collider.GetComponent<Collider2D>().tag == "Finishpoint"){
-            GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
+            if (GameObject.Find("GlobalObject").GetComponent<GlobalScript>().isLoadedLevel == false) {
+                GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
+            }
+            else {
+                GameObject.Find("PlayButton").GetComponent<PlayLoadedLevel>().LoadedLevelStopPlay();
+            }
         }
     }
 

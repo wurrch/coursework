@@ -7,6 +7,7 @@ public class Booster : MonoBehaviour
     public bool isBallActive = false;
     public bool selectedMode = true;
     public Vector2 forceVector;
+    public bool sandbox = true;
 
     public Vector2 firstPoint = Vector2.zero;
     public Vector2 boosterPoint = Vector2.zero;
@@ -16,9 +17,20 @@ public class Booster : MonoBehaviour
     public GameObject controlPrefab;
     GameObject firstControlBall;
 
-    public void Start()
-    {
-        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(1, 0, 0), Quaternion.identity);
+    public void PlayModeSpawn(LevelData.BoosterStruct boosterData){
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(boosterData.controlPoint.x, boosterData.controlPoint.y, 0), Quaternion.identity);
+        transform.position = boosterData.boosterPos;
+
+        selectedMode = false;
+        sandbox = false;
+
+        firstControlBall.SetActive(false);
+    }
+
+    public void SandboxSpawn(){
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
+
+        sandbox = true;
     }
 
     void Update()
@@ -38,39 +50,41 @@ public class Booster : MonoBehaviour
             forceVector = vectorDiff;
         }
 
-        if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false) {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                if (IsTapOnObject() ||
-                firstControlBall.GetComponent<BallController>().IsTapOnObject()) {
-                    selectedMode = true;
-                    firstControlBall.SetActive(true);
+        if (sandbox == true) {
+            if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false) {
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    if (IsTapOnObject() ||
+                    firstControlBall.GetComponent<BallController>().IsTapOnObject()) {
+                        selectedMode = true;
+                        firstControlBall.SetActive(true);
+                    }
+                    else {
+                        selectedMode = false;
+                        firstControlBall.SetActive(false);
+                    }
                 }
-                else {
-                    selectedMode = false;
-                    firstControlBall.SetActive(false);
-                }
-            }
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                if (IsTapOnObject()) {
-                    isBallActive = true;
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    if (IsTapOnObject()) {
+                        isBallActive = true;
+                    }
+                }
+                else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+                    isBallActive = false;
+                }
+
+                if (isBallActive) {
+                    Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                    touchPos.z = 0f;
+                    transform.position = touchPos;
                 }
             }
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
-                isBallActive = false;
+            else {
+                selectedMode = false;
+                firstControlBall.SetActive(false);
             }
-
-            if (isBallActive) {
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                touchPos.z = 0f;
-                transform.position = touchPos;
-            }
-        }
-        else{
-            selectedMode = false;
-            firstControlBall.SetActive(false);
         }
     }
 

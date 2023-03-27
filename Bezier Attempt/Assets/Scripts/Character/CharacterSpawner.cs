@@ -17,21 +17,23 @@ public class CharacterSpawner : MonoBehaviour
     }
 
     void Update(){
-        if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false){
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                if (IsTapOnObject()){
-                    isBallActive = true;
+        if (GameObject.Find("GlobalObject").GetComponent<GlobalScript>().isLoadedLevel == false) {
+            if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false) {
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    if (IsTapOnObject()) {
+                        isBallActive = true;
+                    }
                 }
-            }
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
-                isBallActive = false;
-            }
+                else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+                    isBallActive = false;
+                }
 
-            if (isBallActive){
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                touchPos.z = 0f;
-                transform.position = touchPos;
+                if (isBallActive) {
+                    Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                    touchPos.z = 0f;
+                    transform.position = touchPos;
+                }
             }
         }
     }

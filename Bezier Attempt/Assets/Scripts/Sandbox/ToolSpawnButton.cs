@@ -24,7 +24,8 @@ public class ToolSpawnButton : MonoBehaviour
                     curveObject.GetComponent<BezierCollider2D>().SandboxSpawn();
                 }
                 else if (gameObject.name == "BoosterButton"){
-                    GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    GameObject booster = GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    booster.GetComponent<Booster>().SandboxSpawn();
                 }
 
                 GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();

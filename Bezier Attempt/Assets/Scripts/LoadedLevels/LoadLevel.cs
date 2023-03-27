@@ -32,6 +32,11 @@ public class LoadLevel : MonoBehaviour
         foreach (LevelData.CurveStruct curveData in data.curveList){
             GameObject curveObject = GameObject.Instantiate(curvePrefab);
             curveObject.GetComponent<BezierCollider2D>().PlayModeSpawn(curveData);
-       }
+        }
+
+        foreach (LevelData.BoosterStruct boosterData in data.boosterList){
+            GameObject booster = GameObject.Instantiate(boosterPrefab);
+            booster.GetComponent<Booster>().PlayModeSpawn(boosterData);
+        }
     }
 }

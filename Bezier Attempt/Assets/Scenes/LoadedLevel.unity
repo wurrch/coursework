@@ -218,8 +218,8 @@ GameObject:
   - component: {fileID: 753652030}
   - component: {fileID: 753652029}
   - component: {fileID: 753652028}
-  - component: {fileID: 753652027}
   - component: {fileID: 753652026}
+  - component: {fileID: 753652031}
   m_Layer: 0
   m_Name: PlayButton
   m_TagString: Untagged
@@ -239,22 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f051771180f2f243295958e7e467209e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &753652027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753652025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be333a532a552e91a0372b59322c7ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sandboxCurrentlyPlaying: 0
-  startSprite: {fileID: 21300000, guid: ef0dc90eae5ccc68382c97685082fcd1, type: 3}
-  stopSprite: {fileID: 21300000, guid: 2acf7313ec4d0e50285c257ced429ac5, type: 3}
-  toolboxButton: {fileID: 0}
 --- !u!61 &753652028
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -348,6 +332,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &753652031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753652025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf633cdf6c5a4acfbfb0eda3eed951a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadedLevelCurrentlyPlaying: 0
+  startSprite: {fileID: 21300000, guid: ef0dc90eae5ccc68382c97685082fcd1, type: 3}
+  stopSprite: {fileID: 21300000, guid: 2acf7313ec4d0e50285c257ced429ac5, type: 3}
 --- !u!1 &1267849269
 GameObject:
   m_ObjectHideFlags: 0
