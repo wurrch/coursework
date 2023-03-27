@@ -23,6 +23,11 @@ public class CharacterSpawner : MonoBehaviour
                 {
                     if (IsTapOnObject()) {
                         isBallActive = true;
+
+                        if (GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode == true){
+                            Destroy(gameObject);
+                            GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode = false;
+                        }
                     }
                 }
                 else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {

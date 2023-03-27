@@ -6,6 +6,7 @@ public class GlobalScript : MonoBehaviour
 {
     public string currentScene = "MainMenu";
     public bool isLoadedLevel = false;
+    public bool deleteMode = false;
 
     void Awake(){
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GlobalObject");

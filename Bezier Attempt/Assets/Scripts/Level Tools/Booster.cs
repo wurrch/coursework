@@ -28,7 +28,7 @@ public class Booster : MonoBehaviour
     }
 
     public void SandboxSpawn(){
-        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(0, 2, 0), Quaternion.identity);
 
         sandbox = true;
     }
@@ -58,6 +58,12 @@ public class Booster : MonoBehaviour
                     firstControlBall.GetComponent<BallController>().IsTapOnObject()) {
                         selectedMode = true;
                         firstControlBall.SetActive(true);
+
+                        if (GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode == true){
+                            Destroy(firstControlBall);
+                            Destroy(gameObject);
+                            GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode = false;
+                        }
                     }
                     else {
                         selectedMode = false;

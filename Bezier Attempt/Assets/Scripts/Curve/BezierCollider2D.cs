@@ -47,6 +47,15 @@ public class BezierCollider2D : MonoBehaviour
                     firstHandleBall.SetActive(true);
                     lastControlBall.SetActive(true);
                     lastHandleBall.SetActive(true);
+
+                    if (GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode == true){
+                        Destroy(firstControlBall);
+                        Destroy(firstHandleBall);
+                        Destroy(lastControlBall);
+                        Destroy(lastHandleBall);
+                        Destroy(gameObject);
+                        GameObject.Find("GlobalObject").GetComponent<GlobalScript>().deleteMode = false;
+                    }
                 }
             }
             else {
