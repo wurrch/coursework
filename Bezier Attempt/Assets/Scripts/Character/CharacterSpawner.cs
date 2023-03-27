@@ -16,7 +16,6 @@ public class CharacterSpawner : MonoBehaviour
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
-
     void Update(){
         if (GameObject.Find("PlayButton").GetComponent<SandboxPlay>().sandboxCurrentlyPlaying == false){
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)

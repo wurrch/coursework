@@ -8,6 +8,7 @@ using UnityEngine;
 public class BezierCollider2D : MonoBehaviour
 {
     public bool selectedMode = false;
+    public bool sandbox = true;
 
     public GameObject controlPrefab;
     public GameObject handlePrefab;
@@ -31,20 +32,9 @@ public class BezierCollider2D : MonoBehaviour
     EdgeCollider2D edgeCollider;
     LineRenderer lineRenderer;
 
-    public void Awake()
-    {
-        edgeCollider = GetComponent<EdgeCollider2D>();
-        lineRenderer = GetComponent<LineRenderer>();
-
-        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
-        firstHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(firstHandle.x, firstHandle.y, 0), Quaternion.identity);
-        lastControlBall = GameObject.Instantiate(controlPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
-        lastHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(lastHandle.x, lastHandle.y, 0), Quaternion.identity);
-    }
-
     void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && sandbox == true)
         {
             if (IsTapOnObject() ||
             firstControlBall.GetComponent<BallController>().IsTapOnObject() ||
@@ -67,7 +57,6 @@ public class BezierCollider2D : MonoBehaviour
                 lastHandleBall.SetActive(false);
             }
         }
-
 
         firstPoint = new Vector2(firstControlBall.transform.position.x, firstControlBall.transform.position.y);
         firstHandle = new Vector2(firstHandleBall.transform.position.x, firstHandleBall.transform.position.y);
@@ -119,14 +108,33 @@ public class BezierCollider2D : MonoBehaviour
     }
 
     public void PlayModeSpawn(LevelData.CurveStruct curveData){
+        edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
 
-
-        firstPoint = curveData.firstControlPoint;
-        firstHandle = curveData.firstHandlePoint;
-        lastPoint = curveData.lastControlPoint;
-        lastHandle = curveData.lastHandlePoint;
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(curveData.firstControlPoint.x, curveData.firstControlPoint.y, 0), Quaternion.identity);
+        firstHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(curveData.firstHandlePoint.x, curveData.firstHandlePoint.y, 0), Quaternion.identity);
+        lastControlBall = GameObject.Instantiate(controlPrefab, new Vector3(curveData.lastControlPoint.x, curveData.lastControlPoint.y, 0), Quaternion.identity);
+        lastHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(curveData.lastHandlePoint.x, curveData.lastHandlePoint.y, 0), Quaternion.identity);
 
         selectedMode = false;
+        sandbox = false;
+
+        firstControlBall.SetActive(false);
+        firstHandleBall.SetActive(false);
+        lastControlBall.SetActive(false);
+        lastHandleBall.SetActive(false);
+    }
+
+    public void SandboxSpawn(){
+        edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
+
+        firstControlBall = GameObject.Instantiate(controlPrefab, new Vector3(firstPoint.x, firstPoint.y, 0), Quaternion.identity);
+        firstHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(firstHandle.x, firstHandle.y, 0), Quaternion.identity);
+        lastControlBall = GameObject.Instantiate(controlPrefab, new Vector3(lastPoint.x, lastPoint.y, 0), Quaternion.identity);
+        lastHandleBall = GameObject.Instantiate(handlePrefab, new Vector3(lastHandle.x, lastHandle.y, 0), Quaternion.identity);
+
+        sandbox = true;
     }
 
     bool IsTapOnObject(){

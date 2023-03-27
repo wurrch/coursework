@@ -13,11 +13,20 @@ public class ToolSpawnButton : MonoBehaviour
             if (IsTapOnObject()){
                 if(gameObject.name == "SpawnpointButton"){
                     Destroy(GameObject.FindGameObjectWithTag("CharacterSpawnpoint"));
+                    GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 }
-                else if (gameObject.name == "Finishpoint"){
+                else if (gameObject.name == "FinishpointButton"){
                     Destroy(GameObject.FindGameObjectWithTag("Finishpoint"));
+                    GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 }
-                GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                else if (gameObject.name == "CurveButton"){
+                    GameObject curveObject = GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    curveObject.GetComponent<BezierCollider2D>().SandboxSpawn();
+                }
+                else if (gameObject.name == "BoosterButton"){
+                    GameObject.Instantiate(toolPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                }
+
                 GameObject.Find("ToolboxButton").GetComponent<ToolboxButton>().CloseList();
             }
         }
