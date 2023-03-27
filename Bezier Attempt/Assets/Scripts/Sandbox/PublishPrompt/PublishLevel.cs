@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class LevelData{
-    public Vector2 spawnpointPos;
-    public Vector2 finishPos;
+    public Vector2 spawnpointPos = new Vector2(69420, 0);
+    public Vector2 finishPos = new Vector2(69420, 0);
 
     [System.Serializable]
     public struct CurveStruct{
@@ -71,7 +71,7 @@ public class PublishLevel : MonoBehaviour {
     }
 
     void SaveFile(){
-        PopulateData(data);
+        PopulateData();
 
         string jsonString = JsonUtility.ToJson(data);
         print(jsonString);
@@ -79,7 +79,7 @@ public class PublishLevel : MonoBehaviour {
         File.WriteAllText(Application.persistentDataPath + "/SavedLevels/" + inputField.text + ".json", jsonString);
     }
 
-    void PopulateData(LevelData data){
+    void PopulateData(){
         try {
             data.spawnpointPos = GameObject.FindGameObjectWithTag("CharacterSpawnpoint").transform.position;
             data.finishPos = GameObject.FindGameObjectWithTag("Finishpoint").transform.position;

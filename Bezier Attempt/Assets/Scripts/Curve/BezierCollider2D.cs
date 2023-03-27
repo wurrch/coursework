@@ -11,10 +11,10 @@ public class BezierCollider2D : MonoBehaviour
 
     public GameObject controlPrefab;
     public GameObject handlePrefab;
-    GameObject firstControlBall;
-    GameObject firstHandleBall;
-    GameObject lastControlBall;
-    GameObject lastHandleBall;
+    public GameObject firstControlBall;
+    public GameObject firstHandleBall;
+    public GameObject lastControlBall;
+    public GameObject lastHandleBall;
 
     public int pointsAmount = 0;
     public Vector2 firstPoint = Vector2.zero;
@@ -31,7 +31,7 @@ public class BezierCollider2D : MonoBehaviour
     EdgeCollider2D edgeCollider;
     LineRenderer lineRenderer;
 
-    public void Start()
+    public void Awake()
     {
         edgeCollider = GetComponent<EdgeCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
@@ -116,6 +116,17 @@ public class BezierCollider2D : MonoBehaviour
         pointCoord += (float)Math.Pow(pointsProportion, 3) * lastPoint;
 
         return pointCoord;
+    }
+
+    public void PlayModeSpawn(LevelData.CurveStruct curveData){
+
+
+        firstPoint = curveData.firstControlPoint;
+        firstHandle = curveData.firstHandlePoint;
+        lastPoint = curveData.lastControlPoint;
+        lastHandle = curveData.lastHandlePoint;
+
+        selectedMode = false;
     }
 
     bool IsTapOnObject(){

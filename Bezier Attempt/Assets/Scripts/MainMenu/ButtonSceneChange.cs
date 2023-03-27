@@ -13,6 +13,10 @@ public class ButtonSceneChange : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
             if (IsTapOnObject()){
                 GameObject.Find("GlobalObject").GetComponent<GlobalScript>().currentScene = nextScene;
+                if (nextScene == "LevelSelect"){
+                    GameObject.Find("GlobalObject").GetComponent<GlobalScript>().isLoadedLevel = false;
+                }
+
                 SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             }
         }

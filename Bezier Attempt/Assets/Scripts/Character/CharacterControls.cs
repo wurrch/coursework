@@ -38,15 +38,14 @@ public class CharacterControls : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision){
         isColliding = true;
-
-        if (collision.collider.tag == "Finishpoint"){
-            GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
-        }
     }
 
     void OnTriggerStay2D(Collider2D collider){
         if (collider.GetComponent<Collider2D>().tag == "Booster"){
             rigidbody.AddForce(collider.GetComponent<Booster>().forceVector * 20, ForceMode2D.Force);
+        }
+        else if (collider.GetComponent<Collider2D>().tag == "Finishpoint"){
+            GameObject.Find("PlayButton").GetComponent<SandboxPlay>().SandboxStopPlay();
         }
     }
 

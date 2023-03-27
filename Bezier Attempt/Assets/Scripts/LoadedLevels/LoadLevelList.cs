@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class LoadLevelList : MonoBehaviour
-{
+public class LoadLevelList : MonoBehaviour {
     public GameObject buttonPrefab;
-    public Transform buttonContainer;
-    public List<GameObject> buttonList;
+    public GameObject buttonInHireacy;
 
-    public void Start()
-    {
-        GameObject newButton = Instantiate(buttonPrefab) as GameObject;
-        newButton.transform.SetParent(buttonContainer);
-        newButton.GetComponentInChildren<Text>().text = "lol";
-        buttonList.Add(newButton);
-        newButton.GetComponent<Button>().onClick.AddListener(() => ButtonClicked(newButton));
-    }
+    public void Start() {
+        string[] files = Directory.GetFiles(Application.persistentDataPath + "/SavedLevels");
 
-    public void ButtonClicked(GameObject clickedButton)
-    {
-        Debug.Log("Button clicked: " + clickedButton.GetComponentInChildren<Text>().text);
+        foreach (string file in files) {
+            GameObject levelSlot = GameObject.Instantiate(buttonPrefab);
+            levelSlot.SetActive(true);
+
+            string levelName = file.Substring(file.LastIndexOf("/") + 1);
+            levelSlot.GetComponentInChildren<TMP_Text>().SetText(levelName.Remove(levelName.Length - 5));
+
+            levelSlot.transform.SetParent(buttonInHireacy.transform.parent, false);
+        }
     }
 }
